@@ -13,6 +13,7 @@ import java.awt.*;
 /*
  * Created 10-26-16 by Thomas Bolinger
  */
+
 public class PaceCalculatorGUI extends JFrame {
 
 	private JComboBox eventSelect;
@@ -25,40 +26,58 @@ public class PaceCalculatorGUI extends JFrame {
 	private JTextField paceMinutesTextField;
 	private JTextField paceSecondsTextField;
 
+	private final Color timeColor = new Color(150,200,255);
+	private final Color distanceColor = new Color(255, 200, 150);
+	private final Color paceColor = new Color(175, 255, 175);
+	private final Font font = new Font("arial", Font.BOLD, 16);
+
 	public PaceCalculatorGUI() {
-		setMinimumSize(new Dimension(600, 400));
+		setMinimumSize(new Dimension(500, 400));
 		setBackground(Color.white);
-		setForeground(Color.white);
+		setLocationRelativeTo(null);
 
 		//Title
+		JPanel titlePanel = new JPanel(new GridLayout(1,1));
+		titlePanel.setBackground(Color.white);
 		JLabel titleLabel = new JLabel("Pace Calculator");
-		titleLabel.setBackground(Color.white);
 		titleLabel.setHorizontalAlignment(SwingConstants.HORIZONTAL);
 		titleLabel.setFont(new Font("arial", Font.BOLD, 22));
-		add(titleLabel, BorderLayout.NORTH);
+		titlePanel.add(titleLabel);
+		add(titlePanel, BorderLayout.NORTH);
 
 		//Main content grid
 		JPanel contentPanel = new JPanel(new GridLayout(1,3));
 		contentPanel.setBackground(Color.white);
 		add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setBorder(new EmptyBorder(10,5,10,10));
 
 		//Left side header labels
 		JPanel headerPanel = new JPanel(new GridLayout(3,1));
-		headerPanel.setBorder(new EmptyBorder(0,10,0,0));
 		headerPanel.setBackground(Color.white);
+
+		JPanel timeHeaderPanel = new JPanel(new GridLayout(1,1));
+		timeHeaderPanel.setBackground(timeColor);
 		JLabel timeHeader = new JLabel("Time");
-		timeHeader.setFont(new Font("arial", Font.BOLD, 16));
+		timeHeader.setFont(font);
 		timeHeader.setHorizontalAlignment(SwingConstants.RIGHT);
-		headerPanel.add(timeHeader);
+		timeHeaderPanel.add(timeHeader);
+		headerPanel.add(timeHeaderPanel);
+
+		JPanel distanceHeaderPanel = new JPanel(new GridLayout(1,1));
+		distanceHeaderPanel.setBackground(distanceColor);
 		JLabel distanceHeader = new JLabel("Distance");
-		distanceHeader.setFont(new Font("arial", Font.BOLD, 16));
+		distanceHeader.setFont(font);
 		distanceHeader.setHorizontalAlignment(SwingConstants.RIGHT);
-		headerPanel.add(distanceHeader);
+		distanceHeaderPanel.add(distanceHeader);
+		headerPanel.add(distanceHeaderPanel);
+
+		JPanel paceHeaderPanel = new JPanel(new GridLayout(1,1));
+		paceHeaderPanel.setBackground(paceColor);
 		JLabel paceHeader = new JLabel("Pace");
-		paceHeader.setFont(new Font("arial", Font.BOLD, 16));
+		paceHeader.setFont(font);
 		paceHeader.setHorizontalAlignment(SwingConstants.RIGHT);
-		headerPanel.add(paceHeader);
+		paceHeaderPanel.add(paceHeader);
+		headerPanel.add(paceHeaderPanel);
+
 		add(headerPanel, BorderLayout.WEST);
 
 		//Middle data entry section
@@ -66,8 +85,7 @@ public class PaceCalculatorGUI extends JFrame {
 
 		//Time
 		JPanel timeDataPanel = new JPanel(new GridLayout(3, 3));
-		timeDataPanel.setBorder(new LineBorder(Color.black, 1));
-		timeDataPanel.setBackground(Color.white);
+		timeDataPanel.setBackground(timeColor);
 		JLabel hoursLabel = new JLabel("Hours");
 		hoursLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timeDataPanel.add(hoursLabel);
@@ -96,22 +114,24 @@ public class PaceCalculatorGUI extends JFrame {
 		dataPanel.add(timeDataPanel);
 
 		//Distance
-		JPanel distanceDataPanel = new JPanel(new GridLayout(1,1));
-		distanceDataPanel.setBorder(new LineBorder(Color.black, 1));
-		distanceDataPanel.setBackground(Color.white);
+		JPanel distanceDataPanel = new JPanel(new GridLayout(2,1));
+		distanceDataPanel.setBackground(distanceColor);
 
 		String events[] = {"5K", "5-Mile", "10K", "Half-Marathon"};
 		eventSelect = new JComboBox(events);
 		distanceDataPanel.add(eventSelect);
 
+		JLabel answerDistance = new JLabel();
+		answerDistance.setHorizontalAlignment(SwingConstants.CENTER);
+		distanceDataPanel.add(answerDistance);
+
 		dataPanel.add(distanceDataPanel);
 
 		//Pace
 		JPanel paceDataPanel = new JPanel(new GridLayout(2,1));
-		paceDataPanel.setBorder(new LineBorder(Color.black,1));
-		paceDataPanel.setBackground(Color.white);
+		paceDataPanel.setBackground(paceColor);
 		JPanel paceUpperPanel = new JPanel(new GridLayout(2,2));
-		paceUpperPanel.setBackground(Color.white);
+		paceUpperPanel.setBackground(paceColor);
 		paceDataPanel.add(paceUpperPanel);
 
 		JLabel minutesLabel2 = new JLabel("Mins");
@@ -138,59 +158,45 @@ public class PaceCalculatorGUI extends JFrame {
 		contentPanel.add(dataPanel);
 
 		//Instructions and buttons section
-		JPanel controlPanel = new JPanel(new GridLayout(6, 1));
+		JPanel controlPanel = new JPanel(new GridLayout(3, 1));
 		controlPanel.setBackground(Color.white);
-		controlPanel.setBorder(new EmptyBorder(3,3,3,3));
+
+		JPanel timeControlPanel = new JPanel(new GridLayout(2,1));
+		timeControlPanel.setBackground(timeColor);
+
 		JLabel timeInstructions = new JLabel("<html><p style='text-align:center'>Enter distance and pace to calculate time:</p></html>");
-		controlPanel.add(timeInstructions);
+		timeControlPanel.add(timeInstructions);
 
 		JButton timeButton = new JButton("Calculate Time");
-		timeButton.setEnabled(false);
-		controlPanel.add(timeButton);
+//		timeButton.setEnabled(false);
+		timeControlPanel.add(timeButton);
+
+		controlPanel.add(timeControlPanel);
+
+		JPanel distanceControlPanel = new JPanel(new GridLayout(2, 1));
+		distanceControlPanel.setBackground(distanceColor);
 
 		JLabel distanceInstructions = new JLabel("<html><p style='text-align:center'>Enter time and pace to calculate distance:</p></html>");
-		controlPanel.add(distanceInstructions);
+		distanceControlPanel.add(distanceInstructions);
 
 		JButton distanceButton = new JButton("Calculate Distance");
-		controlPanel.add(distanceButton);
+		distanceControlPanel.add(distanceButton);
+
+		controlPanel.add(distanceControlPanel);
+
+		JPanel paceControlPanel = new JPanel(new GridLayout(2,1));
+		paceControlPanel.setBackground(paceColor);
 
 		JLabel paceInstructions = new JLabel("<html><p style='text-align:center'>Enter time and distance to calculate pace:</p></html>");
-		controlPanel.add(paceInstructions);
+		paceControlPanel.add(paceInstructions);
 
 		JButton paceButton = new JButton("Calculate Pace");
-		paceButton.setEnabled(false);
-		controlPanel.add(paceButton);
+//		paceButton.setEnabled(false);
+		paceControlPanel.add(paceButton);
+
+		controlPanel.add(paceControlPanel);
 
 		contentPanel.add(controlPanel);
-
-
-		//Answer section
-		JPanel answerPanel = new JPanel(new GridLayout(6, 1));
-		answerPanel.setBorder(new EmptyBorder(3,3,3,3));
-		answerPanel.setBackground(Color.white);
-
-		JLabel answerTimeHeader = new JLabel("<html><u>Time</u></html>");
-		answerTimeHeader.setHorizontalAlignment(SwingConstants.CENTER);
-		answerPanel.add(answerTimeHeader);
-		JLabel answerTime = new JLabel();
-		answerTime.setHorizontalAlignment(SwingConstants.CENTER);
-		answerPanel.add(answerTime);
-
-		JLabel answerDistanceHeader = new JLabel("<html><u>Distance</u></html>");
-		answerDistanceHeader.setHorizontalAlignment(SwingConstants.CENTER);
-		answerPanel.add(answerDistanceHeader);
-		JLabel answerDistance = new JLabel();
-		answerDistance.setHorizontalAlignment(SwingConstants.CENTER);
-		answerPanel.add(answerDistance);
-
-		JLabel answerPaceHeader = new JLabel("<html><u>Pace</u></html>");
-		answerPaceHeader.setHorizontalAlignment(SwingConstants.CENTER);
-		answerPanel.add(answerPaceHeader);
-		JLabel answerPace = new JLabel();
-		answerPace.setHorizontalAlignment(SwingConstants.CENTER);
-		answerPanel.add(answerPace);
-
-		contentPanel.add(answerPanel);
 
 		//Add time button functionality
 		timeButton.addActionListener(new ActionListener() {
@@ -199,30 +205,24 @@ public class PaceCalculatorGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String[] paceStrings = {"", paceMinutesTextField.getText(), paceSecondsTextField.getText()};
 				double[] pace = TimeUtility.parseAndValidateEntries(paceStrings);
+
+				double paceSeconds = TimeUtility.hMsToSeconds(pace);
 				
-				if (pace == null){
-					JOptionPane.showMessageDialog(null,  "Enter valid pace", "Pace Error", JOptionPane.ERROR_MESSAGE);
+				if (!paceInBounds(paceSeconds)){
 					return;
 				}
 				
-				double distanceInMiles = -1;
+				double distanceInMiles = getSelectedDistanceInMiles();
 				
-				switch ((String)eventSelect.getSelectedItem()){
-					case "5K":
-						distanceInMiles = PaceCalculatorUtility.kilometersToMiles(5);
-						break;
-					case "5-Mile":
-						distanceInMiles = 5;
-						break;
-					case "10K":
-						distanceInMiles = PaceCalculatorUtility.kilometersToMiles(10);
-						break;
-					case "Half-Marathon":
-						distanceInMiles = 13.1094;
-						
-				}
+				double time = PaceCalculatorUtility.calculateTime(paceSeconds, distanceInMiles);
 				
-				answerDistance.setText(distanceInMiles + " miles");
+				double timeHours = TimeUtility.hours(time);
+				double timeMinutes = TimeUtility.minutes(time);
+				double timeSeconds = TimeUtility.seconds(time);
+				
+				timeHoursTextField.setText((int)timeHours + "");
+				timeMinutesTextField.setText((int)timeMinutes + "");
+				timeSecondsTextField.setText(String.format("%.02f", timeSeconds) + "");
 			}
 		});
 
@@ -237,29 +237,13 @@ public class PaceCalculatorGUI extends JFrame {
 				double[] time = TimeUtility.parseAndValidateEntries(timeStrings);
 				double[] pace = TimeUtility.parseAndValidateEntries(paceStrings);
 
-				if (time == null){
-					JOptionPane.showMessageDialog(null, "Enter valid time", "Time Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				if (pace == null){
-					JOptionPane.showMessageDialog(null,  "Enter valid pace", "Pace Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-
 				double timeSeconds = TimeUtility.hMsToSeconds(time);
 				double paceSeconds = TimeUtility.hMsToSeconds(pace);
 
-				//Time upper bound of 4 hours
-				if (timeSeconds > 60*60*4){
-					JOptionPane.showMessageDialog(null, "Time must be less than 4 hours", "Time Error", JOptionPane.ERROR_MESSAGE);
+				if (!timeInBounds(timeSeconds) || !paceInBounds(paceSeconds)){
 					return;
 				}
-				//Pace upper bound of 
-				if (paceSeconds > 60*20){
-					JOptionPane.showMessageDialog(null,  "Pace must be less than 20 minutes per mile", "Pace Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-
+				
 				double distance = PaceCalculatorUtility.calculateDistance(paceSeconds, timeSeconds);
 
 				//Set answer label
@@ -272,13 +256,72 @@ public class PaceCalculatorGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				String[] timeStrings = {timeHoursTextField.getText(), timeMinutesTextField.getText(), timeSecondsTextField.getText()};
+				double[] time = TimeUtility.parseAndValidateEntries(timeStrings);
+				
+				double timeSeconds = TimeUtility.hMsToSeconds(time);
+				
+				if (!timeInBounds(timeSeconds)){
+					return;
+				}
+				
+				double distanceInMiles = getSelectedDistanceInMiles();
+				
+				double pace = PaceCalculatorUtility.calculatePace(timeSeconds, distanceInMiles);
+				
+				double paceMinutes = TimeUtility.minutes(pace);
+				double paceSeconds = TimeUtility.seconds(pace);
+				
+				paceMinutesTextField.setText((int)paceMinutes + "");
+				paceSecondsTextField.setText(String.format("%.01f",  paceSeconds));
 			}
 		});
 
 		setVisible(true);
 
 
+	}
+
+	private boolean timeInBounds(double time){
+		if (time <= 0 || time > 60*60*4){
+			JOptionPane.showMessageDialog(null, "Please enter a time greater than 0 up to 4 hours. "
+					+ "Hours and minutes must be integers, seconds may be a decimal.", 
+					"Time Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+
+	private boolean paceInBounds(double pace){
+		if (pace <= 0 || pace > 60*20){
+			JOptionPane.showMessageDialog(null, "Please enter a pace greater than 0 seconds and less than 20 minutes per mile. "
+					+ "Minutes must be an integer, but seconds may be a decimal.", "Pace Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+	
+	private double getSelectedDistanceInMiles(){
+		double distanceInMiles;
+		
+		switch ((String)eventSelect.getSelectedItem()){
+		case "5K":
+			distanceInMiles = PaceCalculatorUtility.kilometersToMiles(5);
+			break;
+		case "5-Mile":
+			distanceInMiles = 5;
+			break;
+		case "10K":
+			distanceInMiles = PaceCalculatorUtility.kilometersToMiles(10);
+			break;
+		case "Half-Marathon":
+			distanceInMiles = 13.1094;
+			break;
+		default:
+			distanceInMiles = -1;
+		}
+		
+		return distanceInMiles;
 	}
 
 	/**
