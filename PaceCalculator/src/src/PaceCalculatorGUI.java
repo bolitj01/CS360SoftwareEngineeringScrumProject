@@ -222,7 +222,7 @@ public class PaceCalculatorGUI extends JFrame {
 				
 				timeHoursTextField.setText((int)timeHours + "");
 				timeMinutesTextField.setText((int)timeMinutes + "");
-				timeSecondsTextField.setText(String.format("%.02f", timeSeconds) + "");
+				timeSecondsTextField.setText(String.format("%.01f", timeSeconds) + "");
 			}
 		});
 
