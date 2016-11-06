@@ -65,6 +65,7 @@ public class PaceCalculatorGui extends JFrame {
 		headerPanel.setBackground(Color.white);
 
 		JPanel timeHeaderPanel = new JPanel(new GridLayout(1, 1));
+		timeHeaderPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,25));
 		timeHeaderPanel.setBackground(timeColor);
 		JLabel timeHeader = new JLabel("Time");
 		timeHeader.setFont(font);
@@ -74,12 +75,11 @@ public class PaceCalculatorGui extends JFrame {
 
 		JPanel distanceHeaderPanel = new JPanel(new GridLayout(1, 1));
 		distanceHeaderPanel.setBackground(distanceColor);
-		distanceHeaderPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
+		distanceHeaderPanel.setBorder(BorderFactory.createEmptyBorder(0, 10,0,25));
 		JLabel distanceHeader = new JLabel("Distance");
 		distanceHeader.setFont(font);
 		distanceHeader.setHorizontalAlignment(SwingConstants.RIGHT);
 		distanceHeaderPanel.add(distanceHeader);
-		distanceHeaderPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
 		headerPanel.add(distanceHeaderPanel);
 
 		JPanel paceHeaderPanel = new JPanel(new GridLayout(1, 1));
@@ -88,7 +88,7 @@ public class PaceCalculatorGui extends JFrame {
 		paceHeader.setFont(font);
 		paceHeader.setHorizontalAlignment(SwingConstants.LEFT);
 		paceHeaderPanel.add(paceHeader);
-		paceHeaderPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 15));
+		paceHeaderPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 25));
 		headerPanel.add(paceHeaderPanel);
 
 		add(headerPanel, BorderLayout.WEST);
@@ -169,6 +169,7 @@ public class PaceCalculatorGui extends JFrame {
 
 		JLabel perLabel = new JLabel("Per Mile");
 		perLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		perLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 		paceDataPanel.add(perLabel);
 
 		dataPanel.add(paceDataPanel);
@@ -191,7 +192,7 @@ public class PaceCalculatorGui extends JFrame {
 		// timeButton.setEnabled(false);
 		timeControlPanel.add(timeButton);
 
-		timeControlPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+		timeControlPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 10));
 		controlPanel.add(timeControlPanel);
 
 		JPanel distanceControlPanel = new JPanel(new GridLayout(2, 1));
@@ -204,7 +205,7 @@ public class PaceCalculatorGui extends JFrame {
 		JButton distanceButton = new JButton("Calculate Distance");
 
 		distanceControlPanel.add(distanceButton);
-		distanceControlPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+		distanceControlPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 10));
 		controlPanel.add(distanceControlPanel);
 
 		JPanel paceControlPanel = new JPanel(new GridLayout(2, 1));
@@ -218,7 +219,7 @@ public class PaceCalculatorGui extends JFrame {
 		// paceButton.setEnabled(false);
 		paceControlPanel.add(paceButton);
 
-		paceControlPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+		paceControlPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 10));
 
 		controlPanel.add(paceControlPanel);
 
