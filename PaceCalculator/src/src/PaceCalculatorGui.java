@@ -43,6 +43,7 @@ public class PaceCalculatorGui extends JFrame {
  */
 	public PaceCalculatorGui() {
 		setMinimumSize(new Dimension(500, 400));
+		setResizable(false);
 		setBackground(Color.white);
 		setLocationRelativeTo(null);
 
@@ -97,25 +98,33 @@ public class PaceCalculatorGui extends JFrame {
 		JPanel dataPanel = new JPanel(new GridLayout(3, 1));
 
 		// Time
-		JPanel timeDataPanel = new JPanel(new GridLayout(3, 3));
+		JPanel timeDataPanel = new JPanel(new BorderLayout());
+		JPanel timeUpperPanel = new JPanel(new GridLayout(1, 3));
+		timeUpperPanel.setBorder(BorderFactory.createEmptyBorder(30,0,0,0));
+		timeUpperPanel.setBackground(timeColor);
+		JPanel timeLowerPanel = new JPanel(new GridLayout(1, 3));
+		timeLowerPanel.setBorder(BorderFactory.createEmptyBorder(0,0,30,0));
+		timeLowerPanel.setBackground(timeColor);
 		timeDataPanel.setBackground(timeColor);
 		JLabel hoursLabel = new JLabel("Hours");
 		hoursLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		timeDataPanel.add(hoursLabel);
+		timeUpperPanel.add(hoursLabel);
 		JLabel minutesLabel = new JLabel("Mins");
 		minutesLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		timeDataPanel.add(minutesLabel);
+		timeUpperPanel.add(minutesLabel);
 		JLabel secondsLabel = new JLabel("Secs");
 		secondsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		timeDataPanel.add(secondsLabel);
+		timeUpperPanel.add(secondsLabel);
+		timeDataPanel.add(timeUpperPanel, BorderLayout.NORTH);
 
 		timeHoursTextField = new JTextField();
-		timeDataPanel.add(timeHoursTextField);
+		timeLowerPanel.add(timeHoursTextField);
 		timeMinutesTextField = new JTextField();
-		timeDataPanel.add(timeMinutesTextField);
+		timeLowerPanel.add(timeMinutesTextField);
 		timeSecondsTextField = new JTextField();
-		timeDataPanel.add(timeSecondsTextField);
-
+		timeLowerPanel.add(timeSecondsTextField);
+		timeDataPanel.add(timeLowerPanel, BorderLayout.SOUTH);
+		
 		JLabel filler1 = new JLabel();
 		JLabel filler2 = new JLabel();
 		JLabel filler3 = new JLabel();
@@ -127,31 +136,32 @@ public class PaceCalculatorGui extends JFrame {
 		dataPanel.add(timeDataPanel);
 
 		// Distance
-		JPanel distanceDataPanel = new JPanel(new GridLayout(2, 1));
+		JPanel distanceDataPanel = new JPanel(new BorderLayout());
 		distanceDataPanel.setBackground(distanceColor);
 
 		String[] events = { "5K", "5-Mile", "10K", "Half-Marathon" };
 		eventSelect = new JComboBox(events);
 
-		distanceDataPanel.add(eventSelect);
+		distanceDataPanel.add(eventSelect, BorderLayout.NORTH);
 
-		JLabel answerDistance = new JLabel();
+		JTextField answerDistance = new JTextField();
+		answerDistance.setEditable(false);
 		answerDistance.setHorizontalAlignment(SwingConstants.CENTER);
-		distanceDataPanel.add(answerDistance);
+		distanceDataPanel.add(answerDistance, BorderLayout.SOUTH);
 
-		distanceDataPanel.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 30));
+		distanceDataPanel.setBorder(BorderFactory.createEmptyBorder(25, 0, 25, 30));
 
 		dataPanel.add(distanceDataPanel);
 
 		// Pace
-		JPanel paceDataPanel = new JPanel(new GridLayout(2, 1));
+		JPanel paceDataPanel = new JPanel(new BorderLayout());
 		paceDataPanel.setBackground(paceColor);
 		JPanel paceUpperPanel = new JPanel(new GridLayout(2, 2));
 		paceUpperPanel.setBackground(paceColor);
-		paceDataPanel.add(paceUpperPanel);
+		paceDataPanel.add(paceUpperPanel, BorderLayout.NORTH);
 
-		paceUpperPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
-		paceDataPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 30));
+//		paceUpperPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
+		paceDataPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 30));
 
 		JLabel minutesLabel2 = new JLabel("Mins");
 		minutesLabel2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -169,8 +179,8 @@ public class PaceCalculatorGui extends JFrame {
 
 		JLabel perLabel = new JLabel("Per Mile");
 		perLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		perLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		paceDataPanel.add(perLabel);
+//		perLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 25, 0));
+		paceDataPanel.add(perLabel, BorderLayout.SOUTH);
 
 		dataPanel.add(paceDataPanel);
 
