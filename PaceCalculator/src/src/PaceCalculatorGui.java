@@ -119,6 +119,7 @@ public class PaceCalculatorGui extends JFrame {
 
 		timeHoursTextField = new JTextField();
 		timeLowerPanel.add(timeHoursTextField);
+		
 		timeMinutesTextField = new JTextField();
 		timeLowerPanel.add(timeMinutesTextField);
 		timeSecondsTextField = new JTextField();
@@ -146,6 +147,7 @@ public class PaceCalculatorGui extends JFrame {
 
 		JTextField answerDistance = new JTextField();
 		answerDistance.setEditable(false);
+		answerDistance.setBackground(Color.WHITE);
 		answerDistance.setHorizontalAlignment(SwingConstants.CENTER);
 		distanceDataPanel.add(answerDistance, BorderLayout.SOUTH);
 
@@ -252,12 +254,13 @@ public class PaceCalculatorGui extends JFrame {
 				double distanceInMiles = getSelectedDistanceInMiles();
 
 				double time = PaceCalculatorUtility.calculateTime(paceSeconds, distanceInMiles);
-
+				
 				double timeHours = TimeUtility.hours(time);
 				double timeMinutes = TimeUtility.minutes(time);
 				double timeSeconds = TimeUtility.seconds(time);
 
 				timeHoursTextField.setText((int) timeHours + "");
+				
 				timeMinutesTextField.setText((int) timeMinutes + "");
 				timeSecondsTextField.setText(String.format("%.01f", timeSeconds) + "");
 			}
@@ -283,7 +286,7 @@ public class PaceCalculatorGui extends JFrame {
 				}
 
 				double distance = PaceCalculatorUtility.calculateDistance(paceSeconds, timeSeconds);
-
+				
 				// Set answer label
 				answerDistance.setText(String.format("%.01f miles", distance));
 
@@ -308,7 +311,7 @@ public class PaceCalculatorGui extends JFrame {
 				double distanceInMiles = getSelectedDistanceInMiles();
 
 				double pace = PaceCalculatorUtility.calculatePace(timeSeconds, distanceInMiles);
-
+				
 				double paceMinutes = TimeUtility.minutes(pace);
 				double paceSeconds = TimeUtility.seconds(pace);
 
