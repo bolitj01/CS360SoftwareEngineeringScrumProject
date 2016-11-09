@@ -22,15 +22,16 @@ import javax.swing.SwingConstants;
  *blank for now.
  *
  */
+@SuppressWarnings("serial")
 public class PaceCalculatorGui extends JFrame {
 
+	@SuppressWarnings("rawtypes")
 	private JComboBox eventSelect;
 
 	private JTextField timeHoursTextField;
 	private JTextField timeMinutesTextField;
 	private JTextField timeSecondsTextField;
 
-	private JTextField paceHoursTextField;
 	private JTextField paceMinutesTextField;
 	private JTextField paceSecondsTextField;
 
@@ -41,6 +42,7 @@ public class PaceCalculatorGui extends JFrame {
 /**
  * Instantiate the gui.
  */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PaceCalculatorGui() {
 		setMinimumSize(new Dimension(500, 400));
 		setResizable(false);

@@ -57,14 +57,12 @@ public final class TimeUtility  {
 			for (int i = 0; i < timeStrings.length; i++)  {
 				if (!timeStrings[i].isEmpty())  {
 					time[i] = Double.parseDouble(timeStrings[i]);
-				}
-				else {
+				} else {
 					time[i] = 0;
 				}
 			}
 			return time;
-		}
-		else {
+		} else {
 			return new double[]  {-1, -1, -1};
 		}
 	}

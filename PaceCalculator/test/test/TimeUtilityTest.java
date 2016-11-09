@@ -1,8 +1,10 @@
-package src;
+package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import src.TimeUtility;
 
 public class TimeUtilityTest {
 

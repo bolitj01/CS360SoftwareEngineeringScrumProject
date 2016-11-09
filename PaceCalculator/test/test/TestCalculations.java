@@ -1,10 +1,12 @@
-package src;
+package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class testCalculations {
+import src.PaceCalculatorUtility;
+
+public class TestCalculations {
 
 	@Test
 	public void testLowTimeCalculation() {
